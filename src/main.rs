@@ -1,5 +1,7 @@
 mod sequential;
 mod parallel;
+mod utils;
+
 use std::env;
 
 fn main() {

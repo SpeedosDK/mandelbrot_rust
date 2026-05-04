@@ -1,17 +1,35 @@
-Sådan kører du programmet (erstat <width> og <height> med de ønskede værdier):
+# Mandelbrot Generator
 
-sekventiel version
-cargo run --release -- <width> <height>
+Genererer et billede af Mandelbrot-sættet i Rust.
 
-parallel version
-cargo run --release -- --parallel <width> <height>
+> Erstat `WIDTH` og `HEIGHT` med de ønskede pixelværdier, f.eks. `1920 1080`.
 
+---
 
-hyperfine benchmark test
-NB: Sørg for at have hyperfine installeret og at du er i det rigtige mappe, hvor mandelbrot.exe ligger.
+## Kør programmet
 
-sekventiel version
-hyperfine '.\target\release\mandelbrot.exe --benchmark <width> <height>'
+### Sekventiel version
+```bash
+cargo run --release -- WIDTH HEIGHT
+```
 
-parallel version
-hyperfine '.\target\release\mandelbrot.exe --benchmark --parallel <width> <height>'
+### Parallel version
+```bash
+cargo run --release -- --parallel WIDTH HEIGHT
+```
+
+---
+
+## Benchmark med Hyperfine
+
+> **Krav:** [hyperfine] skal være installeret, og du skal befinde dig i projektmappen.
+
+### Sekventiel version
+```bash
+hyperfine '.\target\release\mandelbrot.exe --benchmark WIDTH HEIGHT'
+```
+
+### Parallel version
+```bash
+hyperfine '.\target\release\mandelbrot.exe --benchmark --parallel WIDTH HEIGHT'
+```

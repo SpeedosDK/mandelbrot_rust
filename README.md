@@ -18,6 +18,16 @@ cargo run --release -- WIDTH HEIGHT
 cargo run --release -- --parallel WIDTH HEIGHT
 ```
 
+### Forbedret parallel version (anbefalet)
+Den forbedrede parallelle version paralleliserer over **rækker** i stedet for individuelle pixels.
+Hver række beregnes i en lokal buffer og merges til sidst — dette giver bedre cache-udnyttelse og undgår overhead fra `par_bridge()`.
+
+```bash
+cargo run --release -- --parallel2 WIDTH HEIGHT
+```
+
+> Denne version er typisk hurtigere end `--parallel` på grund af mere effektiv arbejdsfordeling med Rayon.
+
 ---
 
 ## Benchmark med Hyperfine
@@ -33,3 +43,9 @@ hyperfine '.\target\release\mandelbrot.exe --benchmark WIDTH HEIGHT'
 ```bash
 hyperfine '.\target\release\mandelbrot.exe --benchmark --parallel WIDTH HEIGHT'
 ```
+
+### Forbedret parallel version
+```bash
+hyperfine '.\target\release\mandelbrot.exe --benchmark --parallel2 WIDTH HEIGHT'
+```
+
